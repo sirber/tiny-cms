@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - ./:/app/
+      - ./resources/frankenphp/Caddyfile:/etc/caddy/Caddyfile
+    ports:
+      - 8080:80

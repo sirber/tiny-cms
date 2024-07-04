@@ -1,0 +1,15 @@
+{
+  # Enable FrankenPHP
+  frankenphp
+}
+
+http://localhost {
+  # Enable compression (optional)
+  encode zstd br gzip
+
+  # Execute PHP files in the current directory and serve assets
+  php_server
+
+  # Rewrite urls
+  rewrite * /public/index.php?url={uri}
+}

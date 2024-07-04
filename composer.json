@@ -1,0 +1,18 @@
+{
+    "name": "sirber/tiny-cms",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Sirber\\TinyCms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stephane Berube",
+            "email": "sirber83@gmail.com"
+        }
+    ],
+    "require": {
+        "michelf/php-markdown": "^2.0"
+    }
+}
