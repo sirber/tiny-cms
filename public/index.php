@@ -1,9 +1,18 @@
-<?php declare(strict_types=1);
+<?php
 
-require (__DIR__ . '/../vendor/autoload.php');
+declare(strict_types=1);
 
-// TODO: routing
-$route = explode('/', trim($_GET["url"], '/'));
+require(__DIR__ . '/../vendor/autoload.php');
 
+use Sirber\TinyCms\Renderer;
+use Sirber\TinyCms\Router;
 
-var_dump($route);
+// Routing
+$router = new Router();
+if (!$router->isFile() || $router->isFolder()) {
+  http_response_code(404);
+  die("not found");
+}
+
+// Rendering
+$renderer = new Renderer($router);
