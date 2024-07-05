@@ -9,11 +9,38 @@ use Michelf\Markdown;
 final readonly class Renderer
 {
   public function __construct(
-    private Router $router
+    private Router $router,
+    private string $contentFolder,
+    private Content $content
   ) {
-    $content = $router->getFileContent();
+  }
+
+  public function render(): string
+  {
+    // Render layout
+    $contentTree = $this->content->getContentTree();
+    $layout = $this->getLayout($contentTree);
+
+    // Render requested page
+    $content = $this->getFileContent();
     $my_html = Markdown::defaultTransform($content);
 
-    echo $my_html;
+    return $my_html;
+  }
+
+  private function getFileContent(): string
+  {
+    if (!$this->router->isFile()) {
+      throw new \Error("route is not a file");
+    }
+
+    return file_get_contents($this->router->getFileName());
+  }
+
+  private function getLayout(array $contentTree): string
+  {
+    // TODO: 
+
+    return "";
   }
 }
