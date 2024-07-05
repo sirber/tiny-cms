@@ -30,10 +30,6 @@ final readonly class Renderer
 
   private function getFileContent(): string
   {
-    if (!$this->router->isFile()) {
-      throw new \Error("route is not a file");
-    }
-
     return file_get_contents($this->router->getFileName());
   }
 
