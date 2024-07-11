@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-require(__DIR__ . '/../vendor/autoload.php');
+require __DIR__ . "/../vendor/autoload.php";
 
-use Sirber\TinyCms\Content;
-use Sirber\TinyCms\Renderer;
-use Sirber\TinyCms\Router;
+use TinyCms\Content;
+use TinyCms\Renderer;
+use TinyCms\Router;
 
 $contentFolder = __DIR__ . "/../content/";
 
 // Routing
 $router = new Router($_GET["url"], $contentFolder);
 if (!$router->isFile() || $router->isFolder()) {
-  http_response_code(404);
-  die("not found");
+    http_response_code(404);
+    die("not found");
 }
 
 // Content Mapping
@@ -23,9 +23,9 @@ var_dump($content->getContentTree());
 
 // Rendering
 try {
-  $renderer = new Renderer($router, $contentFolder, $content);
-  echo $renderer->render();
+    $renderer = new Renderer($router, $contentFolder, $content);
+    echo $renderer->render();
 } catch (Exception $e) {
-  http_response_code(500);
-  die($e->getMessage());
+    http_response_code(500);
+    die($e->getMessage());
 }
