@@ -17,7 +17,6 @@ if (!$router->isFile() || $router->isFolder()) {
 
 // Content Mapping
 $content = new Content($contentFolder);
-var_dump($content->getContentTree());
 
 // Rendering
 try {

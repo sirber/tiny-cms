@@ -31,10 +31,16 @@ final readonly class Renderer
         return file_get_contents($this->router->getFileName());
     }
 
+    /**
+     * Renders the layout
+     * 
+     * @param array{string | array{string}} $contentTree
+     * @return string
+     */
     private function getLayout(array $contentTree): string
     {
-        // TODO:
+        $layout = require($this->contentFolder . '/layout.phtml');
 
-        return "";
+        return "layout";
     }
 }

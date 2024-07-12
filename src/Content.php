@@ -8,7 +8,13 @@ final readonly class Content
     {
     }
 
-    public function getContentTree($directory = null): array
+    /**
+     * Summary of getContentTree
+     * 
+     * @param ?string $directory
+     * @return array{string | array{string}}
+     */
+    public function getContentTree(?string $directory = null): array
     {
         if (empty($directory)) {
             $directory = $this->contentFolder;
