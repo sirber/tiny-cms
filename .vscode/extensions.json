@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "mblode.twig-language",
+        "devsense.phptools-vscode",
+        "devsense.composer-php-vscode"
+    ]
+}

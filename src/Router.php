@@ -28,11 +28,11 @@ final class Router
 
     public function isFile(): bool
     {
-        return is_file($this->getFileName());
+        return is_file($this->contentFolder . $this->getFileName());
     }
 
     public function getFileName(): string
     {
-        return $this->contentFolder . $this->route . ".md";
+        return $this->route . ".twig";
     }
 }

@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: development
+    environment:
+      - ENV=development
     volumes:
       - ./:/app/
       - ./resources/frankenphp/Caddyfile:/etc/caddy/Caddyfile

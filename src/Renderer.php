@@ -2,45 +2,35 @@
 
 namespace TinyCms;
 
-use Michelf\Markdown;
-
 final readonly class Renderer
 {
+    private \Twig\Environment $twig;
+
     public function __construct(
         private Router $router,
         private string $contentFolder,
         private Content $content
     ) {
+        $isDev = getenv("ENV") === 'development';
+        $loader = new \Twig\Loader\FilesystemLoader($this->contentFolder);
+
+        $options = [];
+        if (!$isDev) {
+            $options['cache'] = '/tmp';
+        }
+
+        $this->twig = new \Twig\Environment($loader, $options);
     }
 
     public function render(): string
     {
-        // Render layout
         $contentTree = $this->content->getContentTree();
-        $layout = $this->getLayout($contentTree);
+        $fileName = $this->router->getFileName();
 
-        // Render requested page
-        $content = $this->getFileContent();
-        $my_html = Markdown::defaultTransform($content);
+        $options = [
+            'contentTree' => $contentTree,
+        ];
 
-        return $my_html;
-    }
-
-    private function getFileContent(): string
-    {
-        return file_get_contents($this->router->getFileName());
-    }
-
-    /**
-     * Renders the layout
-     * 
-     * @param array{string | array{string}} $contentTree
-     * @return string
-     */
-    private function getLayout(array $contentTree): string
-    {
-        $layout = require($this->contentFolder . '/layout.phtml');
-
-        return "layout";
+        return $this->twig->render($fileName, $options);
     }
 }

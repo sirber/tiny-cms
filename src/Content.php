@@ -29,13 +29,17 @@ final readonly class Content
         $allItems = glob($directory . "*", GLOB_MARK);
 
         foreach ($allItems as $item) {
+            if (basename($item[0]) === '_') {
+                continue;
+            }
+
             if (is_dir($item)) {
                 // Recursively scan subdirectories
                 $subDirectory = basename($item);
                 $result[$subDirectory] = $this->getContentTree($item);
             } elseif (
                 is_file($item) &&
-                pathinfo($item, PATHINFO_EXTENSION) === "md"
+                pathinfo($item, PATHINFO_EXTENSION) === "twig"
             ) {
                 $result[] = str_replace($directory, "", $item);
             }
