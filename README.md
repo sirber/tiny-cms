@@ -1,3 +1,3 @@
-# TineCMS
+# TinyCMS
 
-Tinye Content Management System. It's almost a static web site!
+Tiny Content Management System. It's almost a static web site!
