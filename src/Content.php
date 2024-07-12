@@ -12,7 +12,7 @@ final readonly class Content
      * Summary of getContentTree
      * 
      * @param ?string $directory
-     * @return array{string | array{string}}
+     * @return array{string | array{string}} | array{}
      */
     public function getContentTree(?string $directory = null): array
     {
@@ -27,6 +27,9 @@ final readonly class Content
 
         // Get all files and directories
         $allItems = glob($directory . "*", GLOB_MARK);
+        if (!is_array($allItems)) {
+            return $result;
+        }
 
         foreach ($allItems as $item) {
             if (basename($item[0]) === '_') {
