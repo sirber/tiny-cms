@@ -13,3 +13,4 @@ up:
 
 quality:
 	@php vendor/bin/phpstan analyze 
+	@php vendor/bin/phpunit ./tests
