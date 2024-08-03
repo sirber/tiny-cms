@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace TinyCms;
 
@@ -10,7 +12,7 @@ final readonly class Content
 
     /**
      * Summary of getContentTree
-     * 
+     *
      * @param ?string $directory
      * @return array{string | array{string}} | array{}
      */
