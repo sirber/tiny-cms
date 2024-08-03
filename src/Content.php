@@ -18,14 +18,14 @@ final readonly class Content
      */
     public function getContentTree(?string $directory = null): array
     {
-        if (empty($directory)) {
-            $directory = $this->contentFolder;
+        if (is_null($directory)) {
+            $directory = $this->contentFolder . 'routes/';
         }
 
         $result = [];
 
         // Ensure the directory ends with a slash
-        $directory = rtrim($directory, "/") . "/routes/";
+        $directory = rtrim($directory, "/") . '/';
 
         // Get all files and directories
         $allItems = glob($directory . "*", GLOB_MARK);
@@ -46,7 +46,9 @@ final readonly class Content
                 is_file($item) &&
                 pathinfo($item, PATHINFO_EXTENSION) === "twig"
             ) {
-                $result[] = str_replace($directory, "", $item);
+                ; 
+                $filename_without_ext = pathinfo($item, PATHINFO_FILENAME);
+                $result[] = str_replace($directory, "", $filename_without_ext);
             }
         }
 

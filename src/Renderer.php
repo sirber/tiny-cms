@@ -30,6 +30,7 @@ final readonly class Renderer
         $fileName = $this->router->getFileName();
 
         $options = [
+            'currentFile' => null, // FIXME: be fileName without extension
             'contentTree' => $contentTree,
         ];
 
