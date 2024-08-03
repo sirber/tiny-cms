@@ -1,5 +1,5 @@
 services:
-  web:
+  php:
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,7 +7,13 @@ services:
     environment:
       - ENV=development
     volumes:
-      - ./:/app/
+      - ./:/app/:rw
       - ./resources/frankenphp/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
     ports:
       - 8080:80
+
+volumes:
+  caddy_data:
+  caddy_config:

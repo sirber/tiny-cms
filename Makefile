@@ -1,16 +1,12 @@
-.PHONY: help build up quality
+# @see https://tech.davis-hansson.com/p/make/ for some make best practices
+SHELL := bash
+.SHELLFLAGS := -euo pipefail -c
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
 
-help:
-	@echo "make [build, up, quality]"
+DEFAULT_GOAL := help
 
-build:
-	@docker compose build
+help: ## Display this help
+	@awk -f .make/help.awk $(MAKEFILE_LIST)
 
-up:
-	@composer install
-	@docker compose up -d
-	@echo "http://localhost:8080"
-
-quality:
-	@php vendor/bin/phpstan analyze 
-	@php vendor/bin/phpunit ./tests
+-include .make/*.mk
