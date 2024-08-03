@@ -13,7 +13,7 @@ final readonly class Renderer
         private string $contentFolder,
         private Content $content
     ) {
-        $isDev = getenv("ENV") === 'development';
+        $isDev = getenv("APP_ENV") === 'dev';
         $loader = new \Twig\Loader\FilesystemLoader($this->contentFolder);
 
         $options = [];

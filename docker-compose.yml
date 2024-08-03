@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
       target: development
     environment:
-      - ENV=development
+      - APP_ENV=dev
     volumes:
       - ./:/app/:rw
     ports:
