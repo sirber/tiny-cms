@@ -23,7 +23,6 @@ build:
 up: build ## Build and Start the project
 	@$(COMPOSE_CMD) up -d
 	@$(COMPOSE_CMD) exec php composer install --no-progress
-	@echo "open http://localhost:8080"
 
 .PHONY: down
 down: ## Stop the project

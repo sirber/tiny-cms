@@ -1,6 +1,7 @@
-FROM dunglas/frankenphp:latest-php8.3-alpine AS base
+FROM dunglas/frankenphp:1-php8.3-alpine AS base
 WORKDIR /app
 ENV COMPOSER_ALLOW_SUPERUSER=1
+COPY resources/frankenphp/Caddyfile /etc/caddy/Caddyfile
 RUN set -eux; \
   install-php-extensions \
   @composer \

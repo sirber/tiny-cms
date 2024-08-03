@@ -1,15 +1,24 @@
 {
-  # Enable FrankenPHP
-  frankenphp
+	# Disable HTTPS since it will be terminated upstream
+	auto_https off
+
+	# Enable FrankenPHP if this is a custom directive or plugin
+	frankenphp
+
+	# Sorting algorithms for directives
+	order php_server before file_server
+	order php before file_server
 }
 
-http://localhost {
-  # Enable compression (optional)
-  encode zstd br gzip
+# Configure logging (json)
+log {
+	output stdout
+	format json
+}
 
-  # Execute PHP files in the current directory and serve assets
-  php_server
-
-  # Rewrite urls
-  rewrite * /public/index.php?url={uri}
+route {
+	encode zstd br gzip
+	root * public/
+	rewrite * /index.php?url={uri}
+	php_server
 }
