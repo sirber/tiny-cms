@@ -8,12 +8,5 @@ services:
       - ENV=development
     volumes:
       - ./:/app/:rw
-      - ./resources/frankenphp/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
     ports:
       - 80:80
-
-volumes:
-  caddy_data:
-  caddy_config:
