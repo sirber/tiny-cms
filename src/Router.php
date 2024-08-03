@@ -16,7 +16,7 @@ final class Router
             $url = $_GET["url"];
         }
 
-        $this->route = trim($url, "/");
+        $this->route = trim($url, "/") . "/routes/";
 
         if ($this->isFolder()) {
             $this->route .= "index";

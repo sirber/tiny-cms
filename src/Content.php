@@ -25,7 +25,7 @@ final readonly class Content
         $result = [];
 
         // Ensure the directory ends with a slash
-        $directory = rtrim($directory, "/") . "/";
+        $directory = rtrim($directory, "/") . "/routes/";
 
         // Get all files and directories
         $allItems = glob($directory . "*", GLOB_MARK);

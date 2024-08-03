@@ -15,7 +15,9 @@
 	route {
 		encode zstd br gzip
 		root * public/
-		rewrite * /index.php?url={uri}
+
+		try_files {path} /index.php?url={uri}
+
 		php_server
 		file_server
 	}
