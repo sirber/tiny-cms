@@ -25,13 +25,28 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <!-- TODO: use contentTree -->
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    {% for key, route in contentTree %}
+                    {% if route is iterable %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" role="button" aria-current="page">
+                            {{ key[:1]|upper ~ key[1:] }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for subRoute in route %}
+                            <li><a class="dropdown-item" href="{{ key }}/{{ subRoute }}">
+                                {{ subRoute[:1]|upper ~ subRoute[1:] }}
+                            </a></li>
+                            {% endfor %}
+                        </ul>
                     </li>
+                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/{{ route }}">
+                            {{ route[:1]|upper ~ route[1:] }}
+                        </a>
                     </li>
+                    {% endif %}
+                    {% endfor %}
                 </ul>
             </div>
         </div>

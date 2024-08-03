@@ -19,7 +19,7 @@ final class Router
         $this->route = "routes/" . trim($url, "/");
 
         if ($this->isFolder()) {
-            $this->route .= "index";
+            $this->route .= "/index";
         }
     }
 

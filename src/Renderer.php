@@ -30,10 +30,15 @@ final readonly class Renderer
         $fileName = $this->router->getFileName();
 
         $options = [
-            'currentFile' => null, // FIXME: be fileName without extension
+            'currentFile' => $this->cleanRoute($fileName),
             'contentTree' => $contentTree,
         ];
 
         return $this->twig->render($fileName, $options);
+    }
+
+    private function cleanRoute(string $file): string {
+        $pattern = '/routes\/|\.twig/';
+        return preg_replace($pattern, '', $file);
     }
 }
