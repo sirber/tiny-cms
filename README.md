@@ -8,11 +8,12 @@ There is no database. Navigation is generated on available content.
 Content is in [Twig format](https://twig.symfony.com/), using [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/). It is located in
 the `content/routes` folder. The file `index.twig` will be the default
 page, and will not be shown in nav. Other files will be shown in the nav.
-You can create folders to create sub menus.
+You can create folders to create sub menus. To use a space in a name, you can use an
+underscore (_).
 
 Exemple:
 - index.twig
-- about.twig
+- about_me.twig
 - test/hello.twig
 
 ## Development
