@@ -1,24 +1,22 @@
 {
-	# Disable HTTPS since it will be terminated upstream
 	auto_https off
-
-	# Enable FrankenPHP if this is a custom directive or plugin
 	frankenphp
 
-	# Sorting algorithms for directives
 	order php_server before file_server
 	order php before file_server
 }
 
-# Configure logging (json)
-log {
-	output stdout
-	format json
-}
+:80 {
+	log {
+		output stdout
+		format json
+	}
 
-route {
-	encode zstd br gzip
-	root * public/
-	rewrite * /index.php?url={uri}
-	php_server
+	route {
+		encode zstd br gzip
+		root * public/
+		rewrite * /index.php?url={uri}
+		php_server
+		file_server
+	}
 }
