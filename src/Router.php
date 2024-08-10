@@ -6,7 +6,7 @@ namespace TinyCms;
 
 final class Router
 {
-    private string $route;
+    private string $view;
 
     public function __construct(
         string $url,
@@ -16,16 +16,16 @@ final class Router
             $url = $_GET["url"];
         }
 
-        $this->route = "routes/" . trim($url, "/");
+        $this->view = "views/" . trim($url, "/");
 
         if ($this->isFolder()) {
-            $this->route .= "/index";
+            $this->view .= "/index";
         }
     }
 
     public function isFolder(): bool
     {
-        return is_dir($this->contentFolder . $this->route);
+        return is_dir($this->contentFolder . $this->view);
     }
 
     public function isFile(): bool
@@ -35,6 +35,6 @@ final class Router
 
     public function getFileName(): string
     {
-        return $this->route . ".twig";
+        return $this->view . ".twig";
     }
 }

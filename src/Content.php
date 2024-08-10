@@ -19,7 +19,7 @@ final readonly class Content
     public function getContentTree(?string $directory = null): array
     {
         if (is_null($directory)) {
-            $directory = $this->contentFolder . 'routes/';
+            $directory = $this->contentFolder . 'views/';
         }
 
         $result = [];
