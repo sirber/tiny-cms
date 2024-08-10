@@ -1,9 +1,7 @@
 {
 	auto_https off
 	frankenphp
-
 	order php_server before file_server
-	order php before file_server
 }
 
 :80 {
@@ -14,11 +12,19 @@
 
 	route {
 		encode zstd br gzip
-		root * public/
 
-		try_files {path} /index.php?url={uri}
+		# User Static Files
+		handle /files* {
+			uri strip_prefix /files
+			root * content/files/
+			file_server
+		}
 
-		php_server
-		file_server
+		# PHP application
+		handle {
+			root * public/
+			try_files {path} /index.php?url={uri}
+			php_server
+		}
 	}
 }
