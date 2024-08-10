@@ -30,12 +30,11 @@ final readonly class Renderer
 
     public function render(): string
     {
-        $contentTree = $this->content->getContentTree();
-        $fileName = $this->router->getTemplate();
+        $fileName = $this->getTemplate();
 
         $data = [
             'currentFile' => $this->cleanRoute($fileName),
-            'contentTree' => $contentTree,
+            'contentTree' => $this->content->getContentTree(),
         ];
 
         return $this->twig->render($fileName, $data);
@@ -45,5 +44,10 @@ final readonly class Renderer
     {
         $pattern = '/routes\/|\.twig/';
         return preg_replace($pattern, '', basename($file));
+    }
+
+    private function getTemplate(): string
+    {
+        return str_replace($this->contentFolder->getContentFolder(), '', $this->router->getFileName());
     }
 }

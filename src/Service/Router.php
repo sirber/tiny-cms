@@ -41,9 +41,4 @@ final class Router
     {
         return $this->view . ".twig";
     }
-
-    public function getTemplate(): string // TODO: move elsewhere
-    {
-        return str_replace($this->contentFolder->getContentFolder(), '', $this->getFileName());
-    }
 }
