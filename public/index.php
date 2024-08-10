@@ -1,12 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 require __DIR__ . "/../vendor/autoload.php";
 
-use TinyCms\Content;
-use TinyCms\Renderer;
-use TinyCms\Router;
+use TinyCms\DTO\ContentFolder;
+use TinyCms\Service\Content;
+use TinyCms\Service\Renderer;
+use TinyCms\Service\Router;
 
-$contentFolder = __DIR__ . "/../content/";
+$contentFolder = new ContentFolder(__DIR__ . "/../data/");
+
+// Content Mapping
+$content = new Content($contentFolder);
 
 // Routing
 $router = new Router($_GET["url"], $contentFolder);
@@ -14,9 +20,6 @@ if (!$router->isFile() || $router->isFolder()) {
     http_response_code(404);
     die("not found");
 }
-
-// Content Mapping
-$content = new Content($contentFolder);
 
 // Rendering
 try {

@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-namespace TinyCms;
+namespace TinyCms\Service;
+
+use TinyCms\DTO\ContentFolder;
 
 final readonly class Renderer
 {
+    const string TWIG_CACHE_PATH = '/tmp';
+
     private \Twig\Environment $twig;
 
     public function __construct(
         private Router $router,
-        private string $contentFolder,
+        private ContentFolder $contentFolder,
         private Content $content
     ) {
         $isDev = getenv("APP_ENV") === 'dev';
@@ -18,7 +22,7 @@ final readonly class Renderer
 
         $options = [];
         if (!$isDev) {
-            $options['cache'] = '/tmp';
+            $options['cache'] = self::TWIG_CACHE_PATH;
         }
 
         $this->twig = new \Twig\Environment($loader, $options);
@@ -27,18 +31,19 @@ final readonly class Renderer
     public function render(): string
     {
         $contentTree = $this->content->getContentTree();
-        $fileName = $this->router->getFileName();
+        $fileName = $this->router->getTemplate();
 
-        $options = [
+        $data = [
             'currentFile' => $this->cleanRoute($fileName),
             'contentTree' => $contentTree,
         ];
 
-        return $this->twig->render($fileName, $options);
+        return $this->twig->render($fileName, $data);
     }
 
-    private function cleanRoute(string $file): string {
+    private function cleanRoute(string $file): string
+    {
         $pattern = '/routes\/|\.twig/';
-        return preg_replace($pattern, '', $file);
+        return preg_replace($pattern, '', basename($file));
     }
 }

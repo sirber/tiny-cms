@@ -14,9 +14,9 @@
 		encode zstd br gzip
 
 		# User Static Files
-		handle /files* {
-			uri strip_prefix /files
-			root * content/files/
+		handle /static* {
+			uri strip_prefix /static
+			root * data/user_content/static/
 			file_server
 		}
 

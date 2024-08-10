@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace TinyCms;
+namespace TinyCms\Service;
+
+use TinyCms\DTO\ContentFolder;
 
 final readonly class Content
 {
-    public function __construct(private string $contentFolder)
-    {
-    }
+    public function __construct(
+        private ContentFolder $contentFolder
+    ) {}
 
     /**
      * Summary of getContentTree
@@ -19,7 +21,7 @@ final readonly class Content
     public function getContentTree(?string $directory = null): array
     {
         if (is_null($directory)) {
-            $directory = $this->contentFolder . 'views/';
+            $directory = $this->contentFolder->getViewsFolder();
         }
 
         $result = [];
@@ -45,7 +47,7 @@ final readonly class Content
                 if ($route == 'index') {
                     continue;
                 }
-                
+
                 $result[] = str_replace($directory, "", $route);
             }
         }
