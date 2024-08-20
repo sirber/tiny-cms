@@ -6,9 +6,9 @@ namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
 
-final readonly class Renderer
+class Renderer
 {
-    const string TWIG_CACHE_PATH = '/tmp';
+    public const string TWIG_CACHE_PATH = '/tmp';
 
     private \Twig\Environment $twig;
 
@@ -18,7 +18,7 @@ final readonly class Renderer
         private Content $content
     ) {
         $isDev = getenv("APP_ENV") === 'dev';
-        $loader = new \Twig\Loader\FilesystemLoader($this->contentFolder);
+        $loader = new \Twig\Loader\FilesystemLoader((string)$this->contentFolder);
 
         $options = [];
         if (!$isDev) {
@@ -40,7 +40,7 @@ final readonly class Renderer
         return $this->twig->render($fileName, $data);
     }
 
-    private function cleanRoute(string $file): string
+    private function cleanRoute(string $file): string|null
     {
         $pattern = '/routes\/|\.twig/';
         return preg_replace($pattern, '', basename($file));

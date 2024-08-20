@@ -6,16 +6,16 @@ namespace TinyCms\DTO;
 
 readonly class ContentFolder
 {
-    public function __construct(
-        private string $contentFolder
-    ) {}
+    public function __construct(private string $contentFolder)
+    {
+    }
 
     public function getContentFolder(): string
     {
         return $this->contentFolder;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->contentFolder;
     }

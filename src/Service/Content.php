@@ -8,9 +8,9 @@ use TinyCms\DTO\ContentFolder;
 
 final readonly class Content
 {
-    public function __construct(
-        private ContentFolder $contentFolder
-    ) {}
+    public function __construct(private ContentFolder $contentFolder)
+    {
+    }
 
     /**
      * Summary of getContentTree
@@ -27,7 +27,7 @@ final readonly class Content
         $result = [];
 
         // Ensure the directory ends with a slash
-        $directory = rtrim($directory, "/") . '/';
+        $directory = rtrim($directory, "/") . "/";
 
         // Get all files and directories
         $allItems = glob($directory . "*", GLOB_MARK);
@@ -44,7 +44,7 @@ final readonly class Content
                 pathinfo($item, PATHINFO_EXTENSION) === "twig"
             ) {
                 $route = pathinfo($item, PATHINFO_FILENAME);
-                if ($route == 'index') {
+                if ($route == "index") {
                     continue;
                 }
 
