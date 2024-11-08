@@ -1,18 +1,4 @@
-# Define variables for commands
-PODMAN_CMD := $(shell command -v podman 2>/dev/null)
-DOCKER_CMD := $(shell command -v docker 2>/dev/null)
-COMPOSE_CMD :=
-
-# Determine which command to use for compose
-ifeq ($(PODMAN_CMD),)
-  ifeq ($(DOCKER_CMD),)
-    $(error Neither podman nor docker is installed)
-  else
-    COMPOSE_CMD := docker compose
-  endif
-else
-  COMPOSE_CMD := podman compose
-endif
+COMPOSE_CMD := docker compose
 
 ##@ [Docker]
 .PHONY: build
