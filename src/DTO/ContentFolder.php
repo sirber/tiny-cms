@@ -6,7 +6,9 @@ namespace TinyCms\DTO;
 
 final readonly class ContentFolder
 {
-    public function __construct(private string $contentFolder) {}
+    public function __construct(private string $contentFolder)
+    {
+    }
 
     public function getContentFolder(): string
     {

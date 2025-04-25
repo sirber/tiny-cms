@@ -6,7 +6,7 @@ namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
 
-final  readonly class Renderer
+final readonly class Renderer
 {
     public const string TWIG_CACHE_PATH = '/tmp';
 
