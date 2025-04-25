@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace TinyCms\DTO;
 
-readonly class ContentFolder
+final readonly class ContentFolder
 {
-    public function __construct(private string $contentFolder)
-    {
-    }
+    public function __construct(private string $contentFolder) {}
 
     public function getContentFolder(): string
     {
