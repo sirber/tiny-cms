@@ -1,10 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
   "settings": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   }
 }

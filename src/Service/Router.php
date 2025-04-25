@@ -6,25 +6,27 @@ namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
 
-final class Router
+final readonly class Router
 {
     private string $view;
 
     public function __construct(
-        readonly string $url,
-        private readonly ContentFolder $contentFolder
+        string $url,
+        private ContentFolder $contentFolder
     ) {
         if (empty($url)) {
             $url = $_GET["url"] ?? '';
         }
 
-        $this->view = $this->contentFolder->getViewsFolder() . trim($url, "/");
+        $view = $this->contentFolder->getViewsFolder() . trim($url, "/");
 
-        if ($this->isFolder()) {
-            $this->view .= "/index";
+        if (is_dir($view)) {
+            $view .= "/index";
         }
 
-        $this->view = str_replace("//", "/", $this->view);
+        $view = str_replace("//", "/", $view);
+
+        $this->view = $view;
     }
 
     public function isFolder(): bool
