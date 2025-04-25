@@ -6,4 +6,4 @@ quality: ## Cleanup the project
 
 .PHONY: test
 test: ## Run tests
-	@docker compose exec php /app/vendor/bin/phpunit ./tests
+	@docker compose exec php /app/vendor/bin/pest ./tests

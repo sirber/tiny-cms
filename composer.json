@@ -3,7 +3,8 @@
   "type": "project",
   "autoload": {
     "psr-4": {
-      "TinyCms\\": "src/"
+      "TinyCms\\": "src/",
+      "Tests\\": "tests/"
     }
   },
   "authors": [
@@ -18,7 +19,12 @@
   },
   "require-dev": {
     "phpstan/phpstan": "^1.11",
-    "phpunit/phpunit": "^11.2",
-    "friendsofphp/php-cs-fixer": "^3.61"
+    "friendsofphp/php-cs-fixer": "^3.61",
+    "pestphp/pest": "^3.8"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   }
 }
