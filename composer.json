@@ -1,6 +1,7 @@
 {
   "name": "sirber/tiny-cms",
   "type": "project",
+  "version": "dev",
   "autoload": {
     "psr-4": {
       "TinyCms\\": "src/",
