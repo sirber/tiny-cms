@@ -14,10 +14,6 @@ final readonly class Router
         string $url,
         private ContentFolder $contentFolder
     ) {
-        if (empty($url)) {
-            $url = $_GET["url"] ?? '';
-        }
-
         $view = $this->contentFolder->getViewsFolder() . trim($url, "/");
 
         if (is_dir($view)) {
@@ -39,8 +35,9 @@ final readonly class Router
         return is_file($this->getFileName());
     }
 
-    public function getFileName(): string // TODO: move elsewhere
+    public function getFileName(): string
     {
+        // TODO: move elsewhere
         return $this->view . ".twig";
     }
 }

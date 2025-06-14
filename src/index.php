@@ -15,7 +15,12 @@ $contentFolder = new ContentFolder(__DIR__ . "/../data/");
 $content = new Content($contentFolder);
 
 // Routing
-$router = new Router($_GET["url"], $contentFolder);
+$url = "";
+if (isset($_GET["url"]) && is_scalar($_GET["url"])) {
+    $url = (string) $_GET["url"];
+}
+
+$router = new Router($url, $contentFolder);
 if (!$router->isFile() || $router->isFolder()) {
     http_response_code(404);
     die("not found");
