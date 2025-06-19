@@ -2,7 +2,7 @@ COMPOSE_CMD := docker compose
 
 ##@ [Docker]
 .PHONY: build
-build:
+build: ## Build de development container
 	@$(COMPOSE_CMD) build
 
 .PHONY: up

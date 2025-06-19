@@ -1,6 +1,6 @@
 FROM dunglas/frankenphp:1-php8.4-alpine AS base
 WORKDIR /app
-COPY resources/Caddyfile /etc/caddy/Caddyfile
+COPY resources/Caddyfile /etc/frankenphp/Caddyfile
 RUN set -eux; \
     install-php-extensions \
     @composer \
