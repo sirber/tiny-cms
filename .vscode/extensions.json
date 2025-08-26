@@ -1,7 +1,6 @@
 {
     "recommendations": [
         "mblode.twig-language",
-        "devsense.phptools-vscode",
-        "devsense.composer-php-vscode"
+        "bmewburn.vscode-intelephense-client"
     ]
 }
