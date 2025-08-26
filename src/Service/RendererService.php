@@ -5,17 +5,20 @@ declare(strict_types=1);
 namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
+use TinyCms\Interface\ContentInterface;
+use TinyCms\Interface\RendererInterface;
+use TinyCms\Interface\RouterInterface;
 
-final readonly class Renderer
+final readonly class RendererService implements RendererInterface
 {
     public const string TWIG_CACHE_PATH = '/tmp';
 
     private \Twig\Environment $twig;
 
     public function __construct(
-        private Router $router,
+        private RouterInterface $router,
         private ContentFolder $contentFolder,
-        private Content $content
+        private ContentInterface $content
     ) {
         $isDev = getenv("APP_ENV") === 'dev';
         $loader = new \Twig\Loader\FilesystemLoader((string)$this->contentFolder);

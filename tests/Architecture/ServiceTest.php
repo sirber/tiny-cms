@@ -5,4 +5,5 @@ arch()
     ->toBeClass()
     ->toUseStrictTypes()
     ->toBeFinal()
-    ->toBeReadonly();
+    ->toBeReadonly()
+    ->toHaveSuffix('Service');

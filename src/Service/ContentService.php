@@ -5,20 +5,15 @@ declare(strict_types=1);
 namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
+use TinyCms\Interface\ContentInterface;
 
-final readonly class Content
+final readonly class ContentService implements ContentInterface
 {
     public function __construct(
         private ContentFolder $contentFolder
     ) {
     }
-
-    /**
-     * Summary of getContentTree
-     *
-     * @param ?string $directory
-     * @return array{string | array{string}} | array{}
-     */
+    
     public function getContentTree(?string $directory = null): array
     {
         if (is_null($directory)) {

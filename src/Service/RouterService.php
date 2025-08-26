@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace TinyCms\Service;
 
 use TinyCms\DTO\ContentFolder;
+use TinyCms\Interface\RouterInterface;
 
-final readonly class Router
+final readonly class RouterService implements RouterInterface
 {
     private string $view;
 
