@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:1-php8.4-alpine AS base
+FROM dunglas/frankenphp:1-php8.5.12-alpine AS base
 WORKDIR /app
 COPY resources/Caddyfile /etc/frankenphp/Caddyfile
 RUN set -eux; \
