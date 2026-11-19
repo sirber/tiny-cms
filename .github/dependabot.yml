@@ -9,3 +9,6 @@ updates:
       composer-dependencies:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
